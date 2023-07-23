@@ -33,11 +33,22 @@ function convertToNumber(a) {
         return parseFloat(a);
     } else if (typeof a === 'number') {
         return a;
+    } else if (typeof a === 'boolean') {
+        if (a) {
+            return 1
+        } else {
+            return 0;
+        }
+    } else if (a === null) {
+        return 0
+    } else if (a === undefined) {
+        return NaN;
     } else {
         throw new Error('Convert to Number not possible');
     }
 }
 
+console.log(convertToNumber(undefined))
 
 function coerceToType(value, type) {
     if (typeof value === type) {
