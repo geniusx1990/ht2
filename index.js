@@ -48,7 +48,6 @@ function convertToNumber(a) {
     }
 }
 
-console.log(convertToNumber(undefined))
 
 function coerceToType(value, type) {
     if (typeof value === type) {
@@ -57,11 +56,15 @@ function coerceToType(value, type) {
 
     switch (type) {
         case 'string':
-            return String(value);
+            if (typeof value === 'object' || Array.isArray(value)) {
+                return JSON.stringify(value)
+            } else {
+                return String(value)
+            }
 
         case 'number':
-            if (typeof value === 'number') {
-                return parsedFloat;
+            if (typeof value === 'string') {
+                return parseFloat(value);
             } else if (typeof value === 'boolean') {
                 if (value) {
                     return 1;
