@@ -5,6 +5,10 @@ const library = (() => {
                 return a + b;
             } else if (typeof a === 'string' && typeof b === 'string') {
                 return (a + b);
+            } else if (typeof a === 'string' || typeof a === 'number' && typeof b === 'number' || typeof b === 'string') {
+                return a + b;
+            } else if (typeof a === 'object' && typeof b === 'object') {
+                return Object.assign({}, a, b);
             } else {
                 throw new Error('Invalid types or values');
             }
